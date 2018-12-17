@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NShop.Common
+namespace NShop.Data.Infrastructure
 {
-    public class Class1
+    public interface IDbFactory:IDisposable
     {
+        TShopDbContext Init();
+
     }
 }
