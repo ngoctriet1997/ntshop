@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NShop.Data.Repositories
 {
-    public interface IPostCategoryRepository
+    public interface IPostCategoryRepository: IRepository<PostCategory>
     {
 
     }

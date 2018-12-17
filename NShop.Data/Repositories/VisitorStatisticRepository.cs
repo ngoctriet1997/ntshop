@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 namespace NShop.Data.Repositories
 {
 
-    public interface IVisitorStatisticRepository
+    public interface IVisitorStatisticRepository:IRepository<VisitorStatistic>
     {
 
     }
-    public class VisitorStatisticRepository : RepositoryBase<VisitorStatistic>, ITagRepository
+    public class VisitorStatisticRepository : RepositoryBase<VisitorStatistic>, IVisitorStatisticRepository
     {
         public VisitorStatisticRepository(IDbFactory dbFactory) : base(dbFactory)
         {

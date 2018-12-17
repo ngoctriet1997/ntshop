@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 namespace NShop.Data.Repositories
 {
 
-    public interface ISystemConfigRepository
+    public interface ISystemConfigRepository : IRepository<SystemConfigs>
     {
 
     }
-    public class SystemConfigRepository : RepositoryBase<SystemConfig>, ISystemConfigRepository
+    public class SystemConfigRepository : RepositoryBase<SystemConfigs>, ISystemConfigRepository
     {
         public SystemConfigRepository(IDbFactory dbFactory) : base(dbFactory)
         {

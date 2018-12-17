@@ -33,5 +33,9 @@ namespace NShop.Model.Models
         public int? ViewCount { get; set; }
         [ForeignKey("CategoryID")]
         public virtual PostCategory PostCategory { get; set; }
+
+       
+        public virtual IEnumerable<PostTag> PostTags { get; set; }
+
     }
 }

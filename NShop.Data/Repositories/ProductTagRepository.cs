@@ -8,17 +8,19 @@ using System.Threading.Tasks;
 
 namespace NShop.Data.Repositories
 {
+
+    public interface IProductTagRepository : IRepository<ProductTag>
+    {
+
+    }
+    public class ProductTagRepository : RepositoryBase<ProductTag>, IProductTagRepository
+    {
+        
+        public ProductTagRepository(IDbFactory dbFactory) : base(dbFactory)
+        {
+
+        }
+      
+    }
    
-        public interface IProductTagRepository
-        {
-
-        }
-        public class ProductTagRepository : RepositoryBase<PostTag>, IProductTagRepository
-        {
-            public ProductTagRepository(IDbFactory dbFactory) : base(dbFactory)
-            {
-
-            }
-        }
-    
 }
