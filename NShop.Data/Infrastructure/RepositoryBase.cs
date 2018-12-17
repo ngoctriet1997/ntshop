@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NShop.Data.Infrastructure
 {
-    public abstract class RepositoryBase<T> where T : class
+    public abstract class RepositoryBase<T> : IRepository<T> where T : class
     {
         #region Properties
         private TShopDbContext dataContext;
@@ -49,7 +49,7 @@ namespace NShop.Data.Infrastructure
             foreach (T obj in objects)
                 dbSet.Remove(obj);
         }
-        public virtual T GetSingleById(int id)
+        public virtual T GetSingleByID(int id)
         {
             return dbSet.Find(id);
         }
@@ -110,6 +110,8 @@ namespace NShop.Data.Infrastructure
         {
             return dataContext.Set<T>().Count<T>(predicate) > 0;
         }
+
+    
         #endregion
     }
 }

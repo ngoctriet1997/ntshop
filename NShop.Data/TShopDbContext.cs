@@ -10,15 +10,15 @@ namespace NShop.Data
 {
     public class TShopDbContext : DbContext
     {
-        public TShopDbContext() : base("TShopConnection")
+        public TShopDbContext() : base("Server=DESKTOP-NAUQVI3;Database=CFShop;Trusted_Connection=True;")
         {
             this.Configuration.LazyLoadingEnabled = false;
-        } 
+        }
         public DbSet<Footer> Footers { get; set; }
-        public DbSet<Menu> Menus { get; set; }
         public DbSet<MenuGroup> MenuGroups { get; set; }
-        public DbSet<Order> Orders { get; set; }
+        public DbSet<Menu> Menus { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<Order> Orders { get; set; }
         public DbSet<Page> Pages { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<PostCategory> PostCategories { get; set; }
@@ -33,7 +33,7 @@ namespace NShop.Data
         public DbSet<VisitorStatistic> VisitorStatistics { get; set; }
         protected override void OnModelCreating(DbModelBuilder builder)
         {
-
+       
         }
     }
 }
