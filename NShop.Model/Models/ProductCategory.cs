@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace NShop.Model.Models
 {
     [Table("ProductCategories")]
-    public class ProductCategory:Auditable
+    public class ProductCategory : Auditable
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -18,7 +18,7 @@ namespace NShop.Model.Models
         [Required]
         [MaxLength(256)]
         public string Name { get; set; }
-        [Required] 
+        [Required]
         public string Alias { get; set; }
         [MaxLength(500)]
         public string Description { get; set; }
@@ -29,6 +29,7 @@ namespace NShop.Model.Models
         public bool? HomeFlag { set; get; }
         public virtual IEnumerable<Product> Products { get; set; }
 
+       
 
     }
 }
