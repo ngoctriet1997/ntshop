@@ -24,7 +24,7 @@ namespace NShop.Data.Repositories
 
         public IEnumerable<ProductCategory> GetByAlias(string alias)
         {
-            return null;//this.DbContext.ProductCategories.Where(x => x.Alias == alias);
+            return this.DbContext.ProductCategories.Where(x => x.Alias == alias);
         }
     }
 }
