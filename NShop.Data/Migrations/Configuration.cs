@@ -10,6 +10,7 @@ namespace NShop.Data.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            ContextKey = "NShop.Data.TShopDbContext";
         }
 
         protected override void Seed(NShop.Data.TShopDbContext context)

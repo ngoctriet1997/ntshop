@@ -10,7 +10,7 @@ namespace NShop.Data
 {
     public class TShopDbContext : DbContext
     {
-        public TShopDbContext() : base("Server=DESKTOP-NAUQVI3;Database=CFShop;Trusted_Connection=True;")
+        public TShopDbContext() :base("name=TShopContextT")
         {
             this.Configuration.LazyLoadingEnabled = false;
         }

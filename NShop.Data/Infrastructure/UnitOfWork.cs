@@ -13,13 +13,16 @@ namespace NShop.Data.Infrastructure
         public UnitOfWork(IDbFactory dbFactory)
         {
             this.dbFactory = dbFactory;
+            dbContext = DbContext;
         }
         public TShopDbContext DbContext
         {
+
             get { return dbContext ?? (dbContext = dbFactory.Init()); }
         }
         public void Commit()
         {
+           
             dbContext.SaveChanges();
         }
     }
