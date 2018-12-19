@@ -15,23 +15,23 @@ namespace TShop.Web.Api
     {
         IPostCategoryService _postCategoryService;
 
-        public PostCategoryController(IErrorService errorService, IPostCategoryService postcategoryService) :base(errorService)
+        public PostCategoryController(IErrorService errorService, IPostCategoryService postcategoryService) : base(errorService)
         {
             this._postCategoryService = postcategoryService;
         }
-      
-        public HttpResponseMessage Post(HttpRequestMessage request,PostCategory postCategory)
+
+        public HttpResponseMessage Post(HttpRequestMessage request, PostCategory postCategory)
         {
             return CreateHttpResponse(request, () =>
              {
                  HttpResponseMessage response = null;
-                 if(ModelState.IsValid)
+                 if (ModelState.IsValid)
                  {
                      request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                  }
                  else
                  {
-                    var category =  _postCategoryService.Add(postCategory);
+                     var category = _postCategoryService.Add(postCategory);
                      _postCategoryService.Save();
                      response = request.CreateResponse(HttpStatusCode.Created, category);
                  }
@@ -79,16 +79,10 @@ namespace TShop.Web.Api
         {
             return CreateHttpResponse(request, () =>
             {
-                HttpResponseMessage response = null;
-                if (ModelState.IsValid)
-                {
-                    request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-                }
-                else
-                {
-                    var list = _postCategoryService.GetAll();      
-                    response = request.CreateResponse(HttpStatusCode.OK, list);
-                }
+
+                var list = _postCategoryService.GetAll();
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, list);
+
                 return response;
             });
         }
