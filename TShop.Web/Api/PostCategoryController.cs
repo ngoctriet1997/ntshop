@@ -1,4 +1,5 @@
-﻿using NShop.Model.Models;
+﻿using AutoMapper;
+using NShop.Model.Models;
 using NShop.Service;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using TShop.Web.infrastructure.Core;
-
+using TShop.Web.Models;
+using TShop.Web.infrastructure.Extensions;
 namespace TShop.Web.Api
 {
     [RoutePrefix("api/postcategory")]
@@ -19,8 +21,8 @@ namespace TShop.Web.Api
         {
             this._postCategoryService = postcategoryService;
         }
-
-        public HttpResponseMessage Post(HttpRequestMessage request, PostCategory postCategory)
+        [Route("add")]
+        public HttpResponseMessage Post(HttpRequestMessage request, PostCategoryViewModel postCategoryVm)
         {
             return CreateHttpResponse(request, () =>
              {
@@ -31,14 +33,17 @@ namespace TShop.Web.Api
                  }
                  else
                  {
-                     var category = _postCategoryService.Add(postCategory);
+                     PostCategory newpost = new PostCategory();
+                     newpost.UpdatePostCategory(postCategoryVm);
+                     var category = _postCategoryService.Add(newpost);
                      _postCategoryService.Save();
                      response = request.CreateResponse(HttpStatusCode.Created, category);
                  }
                  return response;
              });
         }
-        public HttpResponseMessage Put(HttpRequestMessage request, PostCategory postCategory)
+        [Route("update")]
+        public HttpResponseMessage Put(HttpRequestMessage request, PostCategoryViewModel postCategoryVm)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -49,7 +54,9 @@ namespace TShop.Web.Api
                 }
                 else
                 {
-                    _postCategoryService.Update(postCategory);
+                    var postCategoryDb = _postCategoryService.GetById(postCategoryVm.ID);
+                    postCategoryDb.UpdatePostCategory(postCategoryVm);
+                    _postCategoryService.Update(postCategoryDb);
                     _postCategoryService.Save();
                     response = request.CreateResponse(HttpStatusCode.OK);
                 }
@@ -81,7 +88,8 @@ namespace TShop.Web.Api
             {
 
                 var list = _postCategoryService.GetAll();
-                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, list);
+                var listPostCategoryVm = Mapper.Map<List<PostCategoryViewModel>>(list);
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listPostCategoryVm);
 
                 return response;
             });

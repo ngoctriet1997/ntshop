@@ -13,7 +13,7 @@ namespace NShop.Model.Abstract
        public DateTime? CreatedDate { get; set; }
         [MaxLength(256)]
         public  string CreatedBy { get; set; }
-         public  DateTime? CreatedUpdate { get; set; }
+         public  DateTime? UpdateDate { get; set; }
         [MaxLength(256)]
         public  string UpdatedBy { get; set; }
         [MaxLength(256)]

@@ -10,7 +10,7 @@ namespace NShop.Model.Abstract
     {
         DateTime? CreatedDate { get; set; }
         string CreatedBy { get; set; }
-        DateTime? CreatedUpdate { get; set; }
+        DateTime? UpdateDate { get; set; }
         string UpdatedBy { get; set; }
         string MetaKeyword { get; set; }
         string MetaDescription { get; set; }
