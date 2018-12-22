@@ -1,29 +1,36 @@
 ﻿using System;
 using System.Reflection;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
+using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Builder;
+using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.DataProtection;
 using NShop.Data;
 using NShop.Data.Infrastructure;
 using NShop.Data.Repositories;
+using NShop.Model.Models;
 using NShop.Service;
 using Owin;
+
 
 [assembly: OwinStartup(typeof(TShop.Web.App_Start.Startup))]
 
 namespace TShop.Web.App_Start
 {
-    public class Startup
+    public partial class Startup
     {
         public void Configuration(IAppBuilder app)
         {
             // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=316888
             ConfigAutofac(app);
+            ConfigureAuth(app);
         }
         private void ConfigAutofac(IAppBuilder app)
         {
@@ -38,7 +45,12 @@ namespace TShop.Web.App_Start
             builder.RegisterType<DbFactory>().As<IDbFactory>().InstancePerRequest();
 
             builder.RegisterType<TShopDbContext>().AsSelf().InstancePerRequest();
-
+            // Asp.net identity
+            builder.RegisterType<ApplicationUserStore>().As<IUserStore<ApplicationUser>>().InstancePerRequest();
+            builder.RegisterType<ApplicationUserManager>().AsSelf().InstancePerRequest();
+            builder.RegisterType<ApplicationSignInManager>().AsSelf().InstancePerRequest();
+            builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).InstancePerRequest();
+            builder.Register(c => app.GetDataProtectionProvider()).InstancePerRequest();
             // Repositories
             builder.RegisterAssemblyTypes(typeof(PostCategoryRepository).Assembly).
                 Where(t => t.Name.EndsWith("Repository"))

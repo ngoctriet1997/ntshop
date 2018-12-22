@@ -1,4 +1,5 @@
-﻿using NShop.Model.Models;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using NShop.Model.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace NShop.Data
 {
-    public class TShopDbContext : DbContext
+    public class TShopDbContext : IdentityDbContext<ApplicationUser>
     {
         public TShopDbContext() :base("name=TShopContextT")
         {
@@ -34,7 +35,13 @@ namespace NShop.Data
         public DbSet<Error> Errors { get; set; }
         protected override void OnModelCreating(DbModelBuilder builder)
         {
-       
+            builder.Entity<IdentityUserRole>().HasKey(x=>new { x.UserId ,x.RoleId} );
+            builder.Entity<IdentityUserLogin>().HasKey(x => x.UserId);
+           
+        }
+        public static TShopDbContext Create()
+        {
+            return new TShopDbContext();
         }
     }
 }
