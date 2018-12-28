@@ -10,8 +10,10 @@
     <script src="~/Scripts/spa/app.js"></script>
 </head>
 <body>
-    <div ng-controller="myController"> 
-      {{message}}
+    <div ng-controller="myController">
+        <input type="number" ng-model="num"/>value {{num}}
+    {{message}}
+        <button ng-click="CheckNumber()"></button>
     </div>
 </body>
 </html>
