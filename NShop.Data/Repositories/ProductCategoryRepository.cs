@@ -13,9 +13,9 @@ namespace NShop.Data.Repositories
     {
         IEnumerable<ProductCategory> GetByAlias(string alias);
     }
-    class ProductCategoryRepository : RepositoryBase<ProductCategory>,IProductCategoryRepository
+    public class ProductCategoryRepository : RepositoryBase<ProductCategory>,IProductCategoryRepository
     {
-        public ProductCategoryRepository(DbFactory dbFactory) : base(dbFactory)
+        public ProductCategoryRepository(IDbFactory dbFactory) : base(dbFactory)
             {
                 
             }

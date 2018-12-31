@@ -12,7 +12,7 @@ namespace NShop.Data.Repositories
     {
 
     }
-    public class PostCategoryRepository:RepositoryBase<PostCategory>,IPostCategoryRepository
+    public class PostCategoryRepository : RepositoryBase<PostCategory>,IPostCategoryRepository
     {
         public PostCategoryRepository(IDbFactory dbFactory): base(dbFactory)
         {

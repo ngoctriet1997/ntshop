@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Trang chủ</h1>
+                <h1>Danh mục sản phẩm</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -33,11 +33,29 @@
             </div>
         </div>
         <div class="card-body">
-            Start creating your amazing application!
-        </div>
+           
+                <table class="table table-bordered">
+                  <tr>
+                    <th style="width: 10px">ID</th>
+                    <th>Tên danh mục</th>
+                    <th>Ngày tạo</th>
+                    <th style="width: 40px">Trạng thái</th>
+                  </tr>
+                  <tr ng-repeat="item in productCategories">
+                    <td>{{item.ID}}</td>
+                    <td>{{item.Name}}</td>
+                    <td>
+                      {{item.CreateDate}}
+                    </td>
+                    <td><span class="badge bg-danger">{{item.Status}}</span></td>
+                  </tr>
+                
+                </table>
+              </div>
+        
         <!-- /.card-body -->
         <div class="card-footer">
-            Footer
+       
         </div>
         <!-- /.card-footer-->
     </div>
