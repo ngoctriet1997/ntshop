@@ -13,6 +13,7 @@ using TShop.Web.infrastructure.Extensions;
 namespace TShop.Web.Api
 {
     [RoutePrefix("api/postcategory")]
+    [Authorize]
     public class PostCategoryController : ApiControllerBase
     {
         IPostCategoryService _postCategoryService;

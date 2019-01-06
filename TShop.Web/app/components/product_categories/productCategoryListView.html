@@ -17,6 +17,22 @@
 
 <!-- Main content -->
 <section class="content">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="input-group">
+                <input class="form-control" ng-model="keyword" type="text" placeholder="Từ khóa" />
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" ng-click="search()">
+                        Tìm kiếm
+                    </button>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <button class="btn btn-success" ui-sref="add_product_category">Thêm mới</button>
+            <button class="btn btn-danger" ng-click="deleteMultiple()" id="btnDelete" disabled>Xóa</button>
+        </div>
+    </div>    
 
     <!-- Default box -->
     <div class="card">
@@ -36,6 +52,7 @@
            
                 <table class="table table-bordered">
                   <tr>
+                      <th width="30px"><input name="all" type="checkbox" ng-click="selectAll()"/></th>
                     <th style="width: 10px">ID</th>
                     <th>Tên danh mục</th>
                     <th>Ngày tạo</th>
@@ -43,6 +60,7 @@
                       <th>Thao tác</th>
                   </tr>
                   <tr ng-repeat="item in productCategories">
+                      <td><input type="checkbox" ng-model="item.checked" name="all"/></td>
                       <td>{{item.ID}}</td>
                       <td>{{item.Name}}</td>
                       <td>
@@ -53,17 +71,19 @@
                           {{item.Status | statusFilter}}</span>
                       </td>
                       <td>
-                          <button class="btn btn-sm btn-primary"><i class="fa fa-pencil "></i></button>
-                          <button class="btn  btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                          <button ui-sref="edit_product_category({id:item.ID})" class="btn btn-sm btn-primary"><i class="fa fa-pencil "></i></button>
+                          <button class="btn  btn-sm btn-danger" ng-click="deleteProductCategory(item.ID)"><i class="fa fa-trash"></i></button>
                       </td>
                   </tr>
-                
+                <tfoot>
+                <tr colspan="4">Tổng số bản ghi là: {{totalCount}}</tr>
+                </tfoot>
                 </table>
               </div>
         
         <!-- /.card-body -->
         <div class="card-footer">
-       
+            <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="getProductCagories(page)"></pager-directive>
         </div>
         <!-- /.card-footer-->
     </div>

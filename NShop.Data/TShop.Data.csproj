@@ -101,6 +101,10 @@
     <Compile Include="Migrations\201812211900456_ChangeKey.Designer.cs">
       <DependentUpon>201812211900456_ChangeKey.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901050354543_AddTagsFieldForProduct.cs" />
+    <Compile Include="Migrations\201901050354543_AddTagsFieldForProduct.Designer.cs">
+      <DependentUpon>201901050354543_AddTagsFieldForProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
@@ -154,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812211900456_ChangeKey.resx">
       <DependentUpon>201812211900456_ChangeKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901050354543_AddTagsFieldForProduct.resx">
+      <DependentUpon>201901050354543_AddTagsFieldForProduct.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

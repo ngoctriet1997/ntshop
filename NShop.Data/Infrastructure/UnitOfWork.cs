@@ -21,8 +21,7 @@ namespace NShop.Data.Infrastructure
             get { return dbContext ?? (dbContext = dbFactory.Init()); }
         }
         public void Commit()
-        {
-           
+        {  
             dbContext.SaveChanges();
         }
     }

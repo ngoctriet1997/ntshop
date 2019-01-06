@@ -1,0 +1,14 @@
+﻿<div>
+    <div ng-hide="(!pagesCount || pagesCount < 2)" style="display:inline">
+        <ul class="pagination pagination-sm">
+            <li ng-class="{'page-item':page!=0}"><a ng-class="{'page-link':page!=0}" ng-hide="page==0" ng-click="search(0)"><<</a></li>
+            <li ng-class="{'page-item':page!=0}"><a ng-class="{'page-link':page!=0}"  ng-hide="page==0" ng-click="search(page-1)"><</a></li>
+            <li class="page-item"  ng-repeat="n in range()" ng-class="{'active': n == page}">
+                <a class="page-link" ng-click="search(n)" >{{n+1}}</a>
+            </li>
+            <li ng-class="{'page-item':page!=pagesCount-1}"><a ng-class="{'page-link':page!=pagesCount-1}" ng-hide="page== pagesCount-1" ng-click="search(pagePlus(1))">></a></li>
+            <li ng-class="{'page-item':page!=pagesCount-1}"><a ng-class="{'page-link':page!=pagesCount-1}" ng-hide="page== pagesCount-1" ng-click="search(pagesCount-1)">>></a></li>
+          
+        </ul>
+    </div>
+</div>  

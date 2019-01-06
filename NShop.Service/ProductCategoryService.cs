@@ -17,6 +17,7 @@ namespace NShop.Service
         IEnumerable<ProductCategory> GetAll();
         IEnumerable<ProductCategory> GetAllByParentID(int parentId);
         ProductCategory GetById(int id);
+        IEnumerable<ProductCategory> GetAll(string keyword);
         void Save();
     }
     public class ProductCategoryService : IProductCategoryService
@@ -42,6 +43,14 @@ namespace NShop.Service
         public IEnumerable<ProductCategory> GetAll()
         {
             return _postCategoryRepository.GetAll();
+        }
+
+        public IEnumerable<ProductCategory> GetAll(string keyword)
+        {
+            if (!string.IsNullOrEmpty(keyword))
+                return _postCategoryRepository.GetMulti(x => x.Name.Contains(keyword) || x.Description.Contains(keyword));
+            else
+                return GetAll();
         }
 
         public IEnumerable<ProductCategory> GetAllByParentID(int parentId)

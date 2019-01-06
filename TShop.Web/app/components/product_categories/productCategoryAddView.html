@@ -1,0 +1,114 @@
+﻿    <!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Thêm mới mục sản phẩm</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Sản phẩm</a></li>
+                    <li><a ui-sref="product-categories"></a></li>
+                    <li class="breadcrumb-item active">Thêm mới mục sản phẩm</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+
+    <!-- Default box -->
+    <div class="card card-info">
+        <div class="card-header">
+            <h3 class="card-title">Thêm mới</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form class="form-horizontal" novalidate name="frmAddProductCategory" role="form" ng-submit="AddProductCategory()">
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Tên danh mục</label>
+                    <div class="col-sm-10">
+                        <input type="text" ng-maxlength="256" class="form-control" required name="name" ng-model="productCategory.Name">
+                        <span ng-show="frmAddProductCategory.name.$error.required" class="has-error">Phải nhập tên danh mục</span>
+                        <span ng-show="frmAddProductCategory.name.$error.maxlength" class="has-error">Tên danh mục chỉ có 256 ký tự</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label" >Tên đề SEO</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="alias" ng-model="productCategory.Alias" id="inputEmail3" required>
+                        <span ng-show="frmAddProductCategory.alias.$invalid" class="has-error">Phải nhập seo</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Mô tả ngắn</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control"  ng-model="productCategory.Description" name="description" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Danh mục cha</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="parentId" ng-model="productCategory.Parent" ng-options="option.ID as option.Name for option in parentCategories">
+                            <option value="">Danh mục gốc</option>
+                        </select>
+                        <input type="hidden" name="parentId" ng-model="productCategory.Parent" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Thứ tự</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" name="displayOrder" ng-model="productCategory.DisplayOrder" required>
+                        <span ng-show="frmAddProductCategory.displayOrder.$invalid" class="has-error">Phải nhập thứ tự</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Hình ảnh</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="productCategory.Image" name="image" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Meta keyword</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control"  ng-model="productCategory.MetaKeyword" name="metakeyword" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Meta Description</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="metadescription" ng-model="productCategory.MetaDescription" ></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" ng-model="productCategory.Status" name="status" ng-checked="productCategory.Status">
+                            <label class="form-check-label" for="exampleCheck2">kích hoạt</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" ng-model="productCategory.HomeFlag" name="homeFlag" ng-checked="productCategory.HomeFlag">
+                            <label class="form-check-label" for="exampleCheck2">Hiển thị trang chủ</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+                <button type="submit" ng-disabled="frmAddProductCategory.$invalid" class="btn btn-success">Lưu</button>
+                <div ui-sref="product_categories"  class="btn btn-danger float-right">Cancel</div>
+            </div>
+            <!-- /.card-footer -->
+        </form>
+    </div>
+    <!-- /.card -->
+
+</section>
